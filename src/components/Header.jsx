@@ -78,10 +78,13 @@ const NavBar = styled.nav`
   height: 80px;
   width: 100%;
   display: flex;
+  position: fixed;
+  top: 0;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
   background-image: linear-gradient(180deg, #000000 0%, #fffcfe00 100%);
+  z-index: 1000;
 `;
 
 const UnOrderedList = styled.ul`
@@ -115,10 +118,11 @@ const Link = styled.a`
     background-color: #ffffff;
     transition: all 0.3s;
   }
-  &::before:hover {
-    transition: all 0.3s;
-    width: 100%;
-    color: red;
+  &:hover {
+    &::before {
+      transition: all 0.3s;
+      width: 100%;
+    }
   }
 `;
 

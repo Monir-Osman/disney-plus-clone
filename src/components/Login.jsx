@@ -54,6 +54,9 @@ const DisneyLogo = styled.img`
   width: 400px;
   height: 300px;
   object-fit: contain;
+  @media (max-width: 600px) {
+    width: 200px;
+  }
 `;
 
 const Button = styled.button`
