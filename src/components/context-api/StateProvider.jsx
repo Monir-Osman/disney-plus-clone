@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 export const StateContext = createContext();
 
 export function StateProvider({ children }) {
-  const [isUserSignIn, setIsUserSignIn] = useState(false);
+  const [isUserSignIn, setIsUserSignIn] = useState(true);
   const [userInfo, setUserInfo] = useState({
-    name: null,
-    userPicture: null,
+    name: "",
+    userPicture: "",
   });
 
   const value = {
