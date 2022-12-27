@@ -8,23 +8,30 @@ import Carousel from "./Carousel";
 import Studios from "./Studios";
 import Movies from "./Movies";
 import requests from "../requests";
+import Footer from "./Footer";
 function App() {
   const { isUserSignIn } = useContext(StateContext);
   const matches = useMediaQuery("(min-width:960px)");
-  return (
-    <div className="App">
-      {!isUserSignIn ? (
-        <Login />
-      ) : (
-        <div>
-          {matches ? <Header /> : <MobileHeader />}
-          <Carousel />
-          <Studios />
-          <Movies url={requests.originals} title="Originals" />
-        </div>
-      )}
-    </div>
-  );
+
+  function HomePage() {
+    return (
+      <div>
+        {matches ? <Header /> : <MobileHeader />}
+        <Carousel />
+        <Studios />
+        <Movies url={requests.originals} title="Originals" />
+        <Movies url={requests.trending} title="Trending" />
+        <Movies url={requests.topRated} title="Top rated" />
+        <Movies url={requests.action} title="Action" />
+        <Movies url={requests.comedy} title="Comedy" />
+        <Movies url={requests.horror} title="Horror" />
+        <Movies url={requests.Romance} title="Romance" />
+        <Movies url={requests.documentaries} title="Documentary" />
+        <Footer />
+      </div>
+    );
+  }
+  return <div className="App">{!isUserSignIn ? <Login /> : <HomePage />}</div>;
 }
 
 export default App;

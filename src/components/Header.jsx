@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
@@ -7,10 +7,26 @@ import MovieIcon from "@mui/icons-material/Movie";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import styled from "styled-components";
 import { StateContext } from "./context-api/StateProvider";
+import { useRef } from "react";
 
 function Header() {
   const [isClicked, setIsClicked] = useState(false);
   const { userInfo, setIsUserSignIn } = useContext(StateContext);
+
+  const navbar = useRef(null);
+  function handleScroll() {
+    if (window.scrollY > 150) {
+      navbar.current.style.backgroundColor = "rgb(9, 11, 19)";
+    } else {
+      navbar.current.style.backgroundColor = "transparent";
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   function handleShowLogOut() {
     setIsClicked(() => !isClicked);
@@ -20,7 +36,7 @@ function Header() {
     setIsUserSignIn(false);
   }
   return (
-    <NavBar>
+    <NavBar ref={navbar}>
       <UnOrderedList>
         <ListItem>
           <Image
@@ -57,8 +73,8 @@ function Header() {
         <UserAvatar
           onClick={handleShowLogOut}
           src={
-            userInfo.userPicture
-              ? userInfo.userPicture
+            userInfo
+              ? userInfo?.userPicture
               : "https://www.pngkit.com/png/full/302-3022217_roger-berry-avatar-placeholder.png"
           }
           alt="user logo"
@@ -85,6 +101,7 @@ const NavBar = styled.nav`
   padding: 0 30px;
   background-image: linear-gradient(180deg, #000000 0%, #fffcfe00 100%);
   z-index: 1000;
+  transition: 250ms;
 `;
 
 const UnOrderedList = styled.ul`

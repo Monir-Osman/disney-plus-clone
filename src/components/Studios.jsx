@@ -31,7 +31,8 @@ const Container = styled.div`
   gap: 20px;
   padding: 30px 40px;
   width: 100%;
-  @media only screen and (max-width: 500px) {
+
+  @media only screen and (max-width: 600px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -44,6 +45,10 @@ const Wrap = styled.div`
   border-radius: 10px;
   cursor: pointer;
   box-shadow: black 0px 15px 10px -7px;
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    margin: 0 auto;
+  }
   &:hover {
     padding: 0;
   }
